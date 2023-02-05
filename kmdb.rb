@@ -117,7 +117,7 @@ movie3["rated"] = "PG-13"
 movie3["studio_id"] = wb["id"]
 movie3.save
 
-#insert actors data
+# #insert actors data
 actor1 = Actor.new
 actor1["name"] = "Christian Bale"
 actor1.save
@@ -164,8 +164,7 @@ actor11.save
 
 #insert roles data
 #Batman Begins roles
-movie_1 = Movie.find_by({ "name" => "Batman Begins" })
-
+movie_1 = Movie.find_by({ "title" => "Batman Begins" })
 actor_1 = Actor.find_by({ "name" => "Christian Bale" })
 role1 = Role.new
 role1["movie_id"] = movie_1["id"]
@@ -189,7 +188,7 @@ role3.save
 
 actor_4 = Actor.find_by({ "name" => "Katie Holmes" })
 role4 = Role.new
-role4["movie_id"] = movie_4["id"] 
+role4["movie_id"] = movie_1["id"] 
 role4["actor_id"] = actor_4["id"]  
 role4["character_name"] = "Rachel Dawes"
 role4.save
@@ -202,7 +201,7 @@ role5["character_name"] = "Commissioner Gordon"
 role5.save
 
 #The Dark Knight roles
-movie_2 = Movie.find_by({ "name" => "The Dark Knight" })
+movie_2 = Movie.find_by({ "title" => "The Dark Knight" })
 
 actor_6 = Actor.find_by({ "name" => "Christian Bale" })
 role6 = Role.new
@@ -240,7 +239,7 @@ role10["character_name"] = "Rachel Dawes"
 role10.save
 
 #The Dark Knight Rises roles
-movie_3 = Movie.find_by({ "name" => "The Dark Knight Rises" })
+movie_3 = Movie.find_by({ "title" => "The Dark Knight Rises" })
 
 actor_11 = Actor.find_by({ "name" => "Christian Bale" })
 role11 = Role.new
@@ -284,15 +283,16 @@ puts ""
 
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
-# for movie in movies
-
-#     title = movie["title"]
-#     year_released = movie["year_released"]
-#     rated = movie["rated"]
-#     studio = Movie.find_by({"studio_id" => studio["id"]})
-
-#     puts "#{title} #{year_released} #{rated} #{studio}"
-#   end
+movies = Movie.all
+for movie in movies
+    title = movie["title"]
+    year_released = movie["year_released"]
+    rated = movie["rated"]
+    studio = Studio.find_by({"id" => movie["studio_id"]})
+    studio = Movie.find_by({"studio_id" => Studio["id"]})
+    studio_name = studio["name"]
+    puts "#{title}    #{year_released}   #{rated}   #{studio_name}"
+end
 
 # Prints a header for the cast output
 puts ""
