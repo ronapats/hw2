@@ -289,7 +289,6 @@ for movie in movies
     year_released = movie["year_released"]
     rated = movie["rated"]
     studio = Studio.find_by({"id" => movie["studio_id"]})
-    studio = Movie.find_by({"studio_id" => Studio["id"]})
     studio_name = studio["name"]
     puts "#{title}    #{year_released}   #{rated}   #{studio_name}"
 end
